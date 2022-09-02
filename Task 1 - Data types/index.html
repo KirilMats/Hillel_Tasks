@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1 - Data types</title>
+</head>
+<body>
+    
+    <script type="text/javascript">
+        const logDataInfo = (data) => {
+            console.log(`Variable value is ${data} and its type is ${typeof data}`);
+        };
+        let n = 10;
+        logDataInfo(n);
+        let bigN = 100n;
+        logDataInfo(bigN);
+        let s = 'Hey there';
+        logDataInfo(s);
+        let b = true;
+        logDataInfo(b);
+        let nl = null;
+        logDataInfo(nl);
+        let u;
+        logDataInfo(u);
+        let o = {prop1: 1, prop2: 'two', prop3: true};
+        logDataInfo(o);
+        let a = [1, 'two', false];
+        logDataInfo(a);
+        let sm = Symbol('S');
+        console.log('Variable value is', sm, `and its type is ${typeof sm}`);
+    </script>
+</body>
+</html>
