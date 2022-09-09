@@ -1,18 +1,19 @@
 const checkNumber = () => {
-    let num = Number(prompt('Please enter a number in the range from 1 to 3', 0));
+    let num = Number(prompt('Please enter a number in the range from 0 to 3', 0));
 
     switch (num){
+        case 0:
+            console.log('You\'ve entered number 0');
+            break;
         case 1:
             console.log('You\'ve entered number 1');
             break;
         case 2:
-            console.log('You\'ve entered number 2');
-            break;
         case 3:
-            console.log('You\'ve entered number 3');
+            console.log('You\'ve entered number 2 or 3');
             break;
         default:
-            console.log('The number you\'ve entered is not in the range from 1 to 3 or is not a number');
+            console.log('The number you\'ve entered is not in the range from 0 to 3 or is not a number');
     }
 }
 checkNumber();
