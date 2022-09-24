@@ -36,7 +36,7 @@ function Car(brand, model, colour) {
 }
 
 Car.prototype.logCarData = function() {
-    console.log(`The car brand is: ${this.brand}, the model is: ${this.model} and the colour is: ${this.colour} ${this.owner ? 'The car owner is ' + this.owner.name : ''}`);
+    console.log(`The car brand is ${this.brand}, the model is ${this.model} and the colour is ${this.colour} ${this.owner ? 'The car owner is ' + this.owner.name : ''}`);
 }
 
 Car.prototype.addCarOwner = function(owner) {
@@ -46,7 +46,7 @@ Car.prototype.addCarOwner = function(owner) {
 const getCarData = function() {
     const brand = prompt('Please enter the car brand', '');
     const model = prompt('Please enter the car model', '');
-    const colour = prompt('Please enter the car colour');
+    const colour = prompt('Please enter the car colour', '');
 
     return {brand, model, colour};
 }
