@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 9 - DOM; Events</title>
+
+    <style type="text/css">
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            color: #000;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        p {
+            margin: 0;
+        }
+        button {
+            outline: none;
+            border: unset;
+        }
+        .wrapper {
+            width: 500px;
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            justify-content: center;
+        }
+        .changeColor_wrapper {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            justify-content: center;
+        }
+        .changeColor_wrapper::before, .numsTable_wrapper::before {
+            align-self: flex-start;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: #0074CC;
+            border: 1px solid #0f95ff;
+            border-radius: 50%;
+            position: relative;
+            left: -15px;
+            margin: 15px 0;
+        }
+        .changeColor_wrapper::before {
+            content: '1';
+        }
+        .numsTable_wrapper::before {
+            content: '2';
+        }
+        .button.button {
+            margin-top: 20px;
+        }
+        button.button {
+            padding: 10px 0;
+            width: 160px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+            background-color: #0f95ff;
+        }
+        button.button:hover {
+            background-color: #0074CC;
+        }
+        .text {
+            color: #48A868;
+            text-align: justify;
+        }
+        .text.red {
+            color: #da1039;
+        }
+
+        .numsTable_wrapper {
+            margin-top: 40px;
+        }
+        .numsTable_wrapper table tr td {
+            padding: 14px;
+            background-color: #2a2734;
+            text-align: center;
+            color: #9a86fd;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <section class="changeColor_wrapper">
+            <div class="text_wrapper">
+                <p class="js--text text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio fuga quas, earum, placeat exercitationem impedit quis quibusdam debitis totam quae eum laborum ex tenetur quidem delectus eaque magnam similique commodi!</p>
+            </div>
+            <div class="button_wrapper">
+                <button class="js--button button">Change to Red</button>
+            </div>
+        </section>
+        <section class="js--numsTable_wrapper numsTable_wrapper">
+
+        </section>
+    </div>
+
+    <script type="text/javascript" src="./js/textColorToggle.js"></script>
+    <script type="text/javascript" src="./js/numbersTable.js"></script>
+</body>
+</html>
