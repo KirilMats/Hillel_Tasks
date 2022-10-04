@@ -1,0 +1,108 @@
+/* RESET STYLES */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.link-forwarding {
+    margin: 50px auto;
+    width: 320px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.link-forwarding__buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+button.link-forwarding__button{
+    border: none;
+    padding: 10px 0;
+    width: 150px;
+    cursor: pointer;
+    background-color: #0f95ff;
+    color: #fff;
+    font-size: 16px;
+}
+
+button.link-forwarding__button:hover {
+    background-color: #0074CC;
+}
+
+.link-forwarding::before, .gallery-random::before {
+    align-self: flex-start;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #0074CC;
+    border: 1px solid #0f95ff;
+    border-radius: 50%;
+    position: absolute;
+    top: -15px;
+}
+
+.link-forwarding::before {
+    content: '1';
+    left: -50px;
+}
+
+.gallery-random::before {
+    content: '2';
+    left: -50px;
+}
+
+.gallery-random {
+    width: 80%;
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-random img:not(:first-child) {
+    margin-top: 20px;
+}
+
