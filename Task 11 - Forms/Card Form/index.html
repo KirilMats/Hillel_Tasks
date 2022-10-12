@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>Task 11 - Card Form</title>
+</head>
+<body>
+    <div class="container">
+        <div class="card-wrapper">
+            <div class="card js--card">
+                <div class="card-front">
+                    <div class="card__payment-system">
+                        <img class="payment-system_mastercard" src="./src/images/mastercard.svg" alt="MasterCard">
+                    </div>
+                    <div class="card__number js--card__number">
+                        &bull;&bull;&bull;&bull;&nbsp;&nbsp;&bull;&bull;&bull;&bull;&nbsp;&nbsp;&bull;&bull;&bull;&bull;&nbsp;&nbsp;&bull;&bull;&bull;&bull;
+                    </div>
+                    <div class="card-holder-and-date">
+                        <div class="card__holder js--card__name">
+                            Card Holder
+                        </div>
+                        <div class="card__expiration-date js--card__date">
+                            MM/YY
+                        </div>
+                    </div>
+                </div>
+                <div class="card-back js--card-back">
+                    <div class="card-back__strip">
+                    </div>
+                    <div class="card-back__cvv js--card-back__cvv">
+                        &bull;&bull;&bull;
+                    </div>
+                </div>
+            </div>
+            <div class="form-wrapper">
+                <form class="card__form form js--card__form" action="#">
+                    <label class="form__full-name full-name">
+                        Full Name
+                        <input class="full-name__input js--full-name__input" type="text" autocomplete="off" required maxlength="24" name="full-name__input" placeholder="Enter card holder's name">
+                    </label>
+                    <label class="form__card-number card-number">
+                        Credit Card Number
+                        <input class="card-number__input js--card-number__input" type="text" autocomplete="off" required pattern=".{19,}" maxlength="19" name="card-number__input" placeholder="****&nbsp;****&nbsp;****&nbsp;****">
+                    </label>
+                    <div class="form__date-and-cvv">
+                        <label class="form__card-date card-date">
+                            Exp Date
+                            <input class="card-date__input js--card-date__input" type="text" autocomplete="off" required name="card-date__input" placeholder="MM/YYYY">
+                        </label>
+                        <label class="form__card-cvv card-cvv">
+                            CVV
+                            <input class="card-cvv__input js--card-cvv__input" type="text" autocomplete="off" required pattern=".{3,}" maxlength="3" name="card-cvv__input" placeholder="&bull;&bull;&bull;">
+                        </label>
+                    </div>
+                    <div class="form__submit">
+                        <button class="form__submit-button" type="submit">Submit</button>
+                        <div class="form__confirmation">
+                            You verify that this info is correct
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="./js/cardForm.js"></script>
+</body>
+</html>
