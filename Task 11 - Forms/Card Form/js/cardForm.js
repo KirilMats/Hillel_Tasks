@@ -67,7 +67,7 @@ function CardForm({_nameInput, _numberInput, _dateInput, _cvvInput, _nameOutput,
     this._insertSpace = function(number) {
         let newNumber = number;
         if(number.length === 16 && !number.includes(' ')) {
-            newNumber = newNumber.match(/.{1,4}/g).join(' ');
+            newNumber = newNumber.match(/\d{4}/g).join(' ');
         }
         return newNumber;
     }

@@ -76,7 +76,7 @@ function ToDo ({_input, _list}) {
     }
 
     this._deleteToDo = function () {
-        const toDo  = this.parentNode.parentNode.parentNode.parentNode;
+        const toDo  = this.closest('.toDoList__toDoItem');
         toDo.remove();
     }
 

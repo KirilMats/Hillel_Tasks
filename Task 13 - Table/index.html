@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>Task 13 - Table</title>
+</head>
+<body>
+    <div class="container js--container">
+        <div class="users-wrapper">
+            <div class="users-header">
+                <h1 class="users__headline">Users Table</h1>
+                <button class="add-user__button add-user__button_add js--add-user__button_add" type="button">ADD USER</button>
+            </div>
+            <div class="users-table-wrapper">
+                <table class="users-table js--users-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NAME</th>
+                            <th>PHONE</th>
+                            <th>AGE</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody class="js--content">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="modal-wrapper js--modal-wrapper">
+            <div class="add-user__modal">
+                <div class="add-user__top">
+                    <h2 class="add-user__headline">Add User</h2>
+                    <button class="add-user__close-button js--add-user__close-button"><img src="./src/images/close_icon.svg" alt=""></button>
+                </div>
+                <form class="add-user__form js--add-user__form" action="#">
+                    <input type="hidden" name="id">
+                    <label class="add-user__label">Name <input class="add-user__input user-name-input js--user-name-input" type="text" name="user-name" placeholder="User Name" required></label>
+                    <label class="add-user__label">Phone <input class="add-user__input user-phone-input js--user-phone-input" type="text" name="user-phone" placeholder="User Phone" required></label>
+                    <label class="add-user__label">Age <input class="add-user__input user-age-input js--user-age-input" type="text" name="user-age" placeholder="User Age" required></label>
+                    <button class="add-user__button add-user__button_submit js--add-user__button_submit" type="submit" >SUBMIT</button>
+                </form>
+            </div>
+            <div class="view-user__modal">
+                <div class="view-user__top">
+                    <h2 class="view-user__headline">View</h2>
+                    <button class="view-user__close-button js--view-user__close-button"><img src="./src/images/close_icon.svg" alt=""></button>
+                </div>
+                <pre class="view-user__info js--view-user__info"></pre>
+                <button class="view-user__button view-user__button_submit js--view-user__button_submit" type="submit" >OK</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="./js/index.js"></script>
+</body>
+</html>
