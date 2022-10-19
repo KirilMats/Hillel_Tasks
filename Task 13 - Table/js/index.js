@@ -31,6 +31,7 @@ function UserTable({_addUserModalCloseButton, _viewUserModalCloseButton, _viewUs
             }
             this._closeModal('js--add-user-modal_shown');
             _form.reset();
+            _form.elements['id'].value = '';
         })
     }
     this._createUser = function (user) {
@@ -74,7 +75,7 @@ function UserTable({_addUserModalCloseButton, _viewUserModalCloseButton, _viewUs
         const currentUser = e.target.closest('.js--user-row');
         currentUser.remove();
         const users = JSON.parse(localStorage.getItem(_localStorageKeyName));
-        const filteredUsers = users.filter(item => item.id !== user.id)
+        const filteredUsers = users.filter(item => item.id !== user.id);
         localStorage.setItem(_localStorageKeyName, JSON.stringify(filteredUsers));
     }
     this._updateUser = function (user) {
