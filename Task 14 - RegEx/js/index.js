@@ -52,27 +52,30 @@ document.addEventListener('DOMContentLoaded', function () {
             inputValidation({
                 type: 'NAME',
                 reg: /^[A-Za-z\s'-]*$/,
-                _input: document.querySelector('.js--sign-up__input_f-name'),
-                _appendTarget: document.querySelector('.js--sign-up__label_f-name')
+                _input: document.querySelector('.js--sign-up__input_name'),
+                _appendTarget: document.querySelector('.js--sign-up__label_name')
             });
             inputValidation({
-                type: 'NAME',
-                reg:  /^[A-Za-z\s'-]*$/,
-                _input: document.querySelector('.js--sign-up__input_l-name'),
-                _appendTarget: document.querySelector('.js--sign-up__label_l-name')
+                type: 'EMAIL',
+                reg:  /^([a-zA-Z\d_\-\.]+)@([a-zA-Z\d_\-\.]+)\.([a-zA-Z]{2,5})$/,
+                _input: document.querySelector('.js--sign-up__input_email'),
+                _appendTarget: document.querySelector('.js--sign-up__label_email')
             });
         })
     }
     onFormSubmit(document.querySelector('.js--sign-up__form'));
 
     const inputValidation = function ({type, reg, _input, _appendTarget}) {
-        const [PASSWORD, NAME] = ['PASSWORD', 'NAME'];
+        const [PASSWORD, NAME, EMAIL] = ['PASSWORD', 'NAME', 'EMAIL'];
         switch (type) {
             case PASSWORD:
                 errorHandler(_input, _appendTarget, 'Must contain min 8 chars (at least 1 capital letter, 1 digit and 1 special symbol).', reg);
                 break;
             case NAME:
                 errorHandler(_input, _appendTarget, 'Must contain only letters.', reg);
+                break;
+            case EMAIL:
+                errorHandler(_input, _appendTarget, 'Must match name@mail.com format.', reg);
                 break;
         }
     }
