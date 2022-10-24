@@ -142,12 +142,32 @@ table {
     background: rgba(256, 67, 55, 1);
 }
 
+.clock__button_stop:disabled {
+    background: rgba(227, 139, 134, 1);
+}
+
+.clock__button_stop:disabled:hover {
+    background: rgba(227, 139, 134, 1);
+}
+
 .clock__button_resume {
     background: rgba(3, 174, 133, 1);
 }
 
+.clock__button_resume:disabled {
+    background: rgba(3, 174, 133, 0.6);
+}
+
+.clock__button_resume:disabled:hover {
+    background: rgba(3, 174, 133, 0.6);
+}
+
 .clock__button_resume:hover {
     background: rgba(32, 205, 164, 1);
+}
+
+.clock__button:disabled {
+    cursor: auto;
 }
 
 @media screen and (max-width: 480px) {
