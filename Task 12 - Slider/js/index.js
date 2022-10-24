@@ -33,6 +33,12 @@ function Slider({_list, _prevButton, _nextButton}) {
                     if(el !== _listItems[_listLength - 1] && el.className.includes('shown')) {
                         el.classList.remove('shown');
                         el.nextElementSibling.classList.add('shown');
+                        if(el.nextElementSibling) {
+                            if(el.previousElementSibling) {
+                                el.previousElementSibling.classList.remove('beforeShown');
+                            }
+                            el.classList.add('beforeShown');
+                        }
                         this._disableButton();
                         return false
                     }
@@ -44,6 +50,12 @@ function Slider({_list, _prevButton, _nextButton}) {
                     if(el !== _listItems[0] && el.className.includes('shown')) {
                         el.classList.remove('shown');
                         el.previousElementSibling.classList.add('shown');
+                        if(el.previousElementSibling.previousElementSibling) {
+                            el.previousElementSibling.classList.remove('beforeShown');
+                            el.previousElementSibling.previousElementSibling.classList.add('beforeShown');
+                        } else {
+                            el.previousElementSibling.classList.remove('beforeShown');
+                        }
                         this._disableButton();
                         return false
                     }

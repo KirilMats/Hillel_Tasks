@@ -19,15 +19,15 @@
                     <legend class="sign-up__legend">Sign Up</legend>
                     <label class="sign-up__label js--sign-up__label_name">
                         <span class="sign-up__headline sign-up__name">Name</span>
-                        <input class="sign-up__input sign-up__input_name js--sign-up__input_name" type="text" name="name" placeholder="Alex" required>
+                        <input class="sign-up__input sign-up__input_name js--sign-up__input_name" type="text" data-name="Must contain only letters." name="name" placeholder="Alex" required>
                     </label>
                     <label class="sign-up__label js--sign-up__label_email">
                         <span class="sign-up__headline sign-up__email">Email</span>
-                        <input class="sign-up__input sign-up__input_email js--sign-up__input_email" type="text" name="email" placeholder="alex.taylor@gmail.com" required>
+                        <input class="sign-up__input sign-up__input_email js--sign-up__input_email" type="text" data-email="Must match name@mail.com format." name="email" placeholder="alex.taylor@gmail.com" required>
                     </label>
                     <label class="sign-up__label js--sign-up__label_password">
                         <span class="sign-up__headline sign-up__l-password">Password</span>
-                        <input class="sign-up__input sign-up__input_password js--sign-up__input_password" type="password" placeholder="**********" name="l-name" required>
+                        <input class="sign-up__input sign-up__input_password js--sign-up__input_password" type="password" data-password="Must contain min 8 chars (at least 1 capital letter, 1 digit and 1 special symbol)." placeholder="**********" name="l-name" required>
                     </label>
                     <button class="sign-up__submit" type="submit">Sign up</button>
                 </fieldset>

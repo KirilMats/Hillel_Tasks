@@ -1,82 +1,74 @@
 'use strict';
 document.addEventListener('DOMContentLoaded', function () {
-    class Error {
-        constructor(_appendTarget, errorMessage) {
-            this._appendTarget = _appendTarget;
-            this.errorMessage = errorMessage;
+    class FormValidation {
+        constructor(_form) {
+            this._form = _form;
             this.error = undefined;
         }
-        _createError() {
+        init() {
+            this._onFormSubmit();
+        }
+        _createError(errorMessage) {
             this.error = document.createElement('span');
             this.error.classList.add('error-message');
-            this.error.innerHTML = this.errorMessage;
+            this.error.innerHTML = errorMessage;
         }
-        addError() {
-            this._createError();
-            this._appendTarget.appendChild(this.error);
+        _addError(errorMessage, _appendTarget) {
+            this._createError(errorMessage);
+            _appendTarget.appendChild(this.error);
         }
-        removeError() {
-            this._appendTarget.lastElementChild.remove();
+        _removeError(_appendTarget) {
+            _appendTarget.lastElementChild.remove();
         }
-    }
-
-    function errorInput(_appendTarget) {
-        _appendTarget.classList.toggle('error-input');
-    }
-
-    function errorHandler(_input, _appendTarget, errorMessage, reg) {
-        const error = new Error(_appendTarget, errorMessage);
-        if(!_input.value.match(reg)) {
-            if(!_input.nextElementSibling) {
-                error.addError();
-                errorInput(_appendTarget);
+        _errorInput(_appendTarget) {
+            _appendTarget.classList.toggle('error-input');
+        }
+        _onFormSubmit() {
+            this._form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                Array.from(this._form.elements).forEach(el => {
+                    if(el.dataset.password) {
+                        this._inputValidation({
+                            errorMessage: el.dataset.password,
+                            reg: /(?=.*[A-Z])(?=.*\d)(?=.*[~`!@#$%^&*()_\-+={\[}\]|\\:;"'<,>.?\/])[a-zA-Z\d~`!@#$%^&*()_\-+={\[}\]|\\:;"'<,>.?\/]{8,}/g,
+                            _input: el,
+                            _appendTarget: el.closest('.js--sign-up__label_password')
+                        });
+                    }
+                    if(el.dataset.name) {
+                        this._inputValidation({
+                            errorMessage: el.dataset.name,
+                            reg: /^[A-Za-z\s'-]*$/,
+                            _input: el,
+                            _appendTarget: el.closest('.js--sign-up__label_name')
+                        });
+                    }
+                    if(el.dataset.email) {
+                        this._inputValidation({
+                            errorMessage: el.dataset.email,
+                            reg: /^([a-zA-Z\d_\-\.]+)@([a-zA-Z\d_\-\.]+)\.([a-zA-Z]{2,5})$/,
+                            _input: el,
+                            _appendTarget: el.closest('.js--sign-up__label_email')
+                        });
+                    }
+                });
+            })
+        }
+        _inputValidation({errorMessage, reg, _input, _appendTarget}) {
+            if(!_input.value.match(reg)) {
+                if(!_input.nextElementSibling) {
+                    this._addError(errorMessage, _appendTarget);
+                    this._errorInput(_appendTarget);
+                }
+            }
+            else {
+                if(_input.nextElementSibling) {
+                    this._removeError(_appendTarget);
+                    this._errorInput(_appendTarget);
+                }
             }
         }
-        else {
-            if(_input.nextElementSibling) {
-                error.removeError();
-                errorInput(_appendTarget);
-            }
-        }
     }
-
-    const onFormSubmit = function (_form) {
-        _form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            inputValidation({
-                type: 'PASSWORD',
-                reg: /(?=.*[A-Z])(?=.*\d)(?=.*[~`!@#$%^&*()_\-+={\[}\]|\\:;"'<,>.?\/])[a-zA-Z\d~`!@#$%^&*()_\-+={\[}\]|\\:;"'<,>.?\/]{8,}/g,
-                _input: document.querySelector('.js--sign-up__input_password'),
-                _appendTarget: document.querySelector('.js--sign-up__label_password')
-            });
-            inputValidation({
-                type: 'NAME',
-                reg: /^[A-Za-z\s'-]*$/,
-                _input: document.querySelector('.js--sign-up__input_name'),
-                _appendTarget: document.querySelector('.js--sign-up__label_name')
-            });
-            inputValidation({
-                type: 'EMAIL',
-                reg:  /^([a-zA-Z\d_\-\.]+)@([a-zA-Z\d_\-\.]+)\.([a-zA-Z]{2,5})$/,
-                _input: document.querySelector('.js--sign-up__input_email'),
-                _appendTarget: document.querySelector('.js--sign-up__label_email')
-            });
-        })
-    }
-    onFormSubmit(document.querySelector('.js--sign-up__form'));
-
-    const inputValidation = function ({type, reg, _input, _appendTarget}) {
-        const [PASSWORD, NAME, EMAIL] = ['PASSWORD', 'NAME', 'EMAIL'];
-        switch (type) {
-            case PASSWORD:
-                errorHandler(_input, _appendTarget, 'Must contain min 8 chars (at least 1 capital letter, 1 digit and 1 special symbol).', reg);
-                break;
-            case NAME:
-                errorHandler(_input, _appendTarget, 'Must contain only letters.', reg);
-                break;
-            case EMAIL:
-                errorHandler(_input, _appendTarget, 'Must match name@mail.com format.', reg);
-                break;
-        }
-    }
+    const formValidation = new FormValidation(document.querySelector('.js--sign-up__form'));
+    formValidation.init();
 })
