@@ -1,54 +1,49 @@
 'use strict';
-class Slider {
-    constructor({_list, _prevButton, _nextButton, _markers}) {
-        this._prevButton = _prevButton;
-        this._nextButton = _nextButton;
-        this._markers = _markers;
-        this._listLength = _list.children.length;
-        this._listItems = Array.from(_list.children);
-    }
-    init() {
-        this._switchSlide(this._nextButton);
-        this._switchSlide(this._prevButton);
+function Slider({_list, _prevButton, _nextButton, _markers}) {
+    this._listLength = _list.children.length;
+    this._listItems = Array.from(_list.children);
+    const [_listItems, _listLength] = [this._listItems, this._listLength];
+    this.init = function () {
+        this._switchSlide(_nextButton);
+        this._switchSlide(_prevButton);
         this._addInitialClasses();
         this._addMarkers();
         this._addInitialScroll();
     }
-    _disableButton(button) {
+    this._disableButton = function (button) {
         button.classList.add('disabled');
         button.setAttribute('disabled', '');
     }
-    _enableButton(button) {
+    this._enableButton = function (button) {
         button.classList.remove('disabled');
         button.removeAttribute('disabled');
     }
-    _toggleButton() {
-        if(this._listItems[this._listLength-1].className.includes('shown')) {
-            this._disableButton(this._nextButton);
+    this._toggleButton = function () {
+        if(_listItems[_listLength-1].className.includes('shown')) {
+            this._disableButton(_nextButton);
         } else {
-            this._enableButton(this._nextButton);
+            this._enableButton(_nextButton);
         }
-        if(this._listItems[0].className.includes('shown')) {
-            this._disableButton(this._prevButton);
+        if(_listItems[0].className.includes('shown')) {
+            this._disableButton(_prevButton);
         } else {
-            this._enableButton(this._prevButton);
+            this._enableButton(_prevButton);
         }
     }
-    _addInitialClasses() {
+    this._addInitialClasses = function () {
         const middleSlide = this._listItems[Math.floor(this._listItems.length/2)];
         middleSlide.classList.add('shown');
         middleSlide.previousElementSibling.classList.add('beforeShown');
     }
-    _switchSlide(button) {
+    this._switchSlide = function (button) {
         button.addEventListener('click', () => {
-            this._listItems.forEach((el, index) => {
-                console.log(el);
-                const currentMarker = document.querySelectorAll('.marker')[this._listItems.indexOf(el)];
-                if(button === this._nextButton) {
-                    if(el !== this._listItems[this._listLength - 1] && el.className.includes('shown')) {
+            _listItems.every((el) => {
+                const currentMarker = document.querySelectorAll('.marker')[_listItems.indexOf(el)];
+                if(button === _nextButton) {
+                    if(el !== _listItems[_listLength - 1] && el.className.includes('shown')) {
                         el.classList.remove('shown');
                         el.nextElementSibling.classList.add('shown');
-                        this._switchToNextMarker(currentMarker, index);
+                        this._switchToNextMarker(currentMarker);
                         if(el.nextElementSibling) {
                             if(el.previousElementSibling) {
                                 el.previousElementSibling.classList.remove('beforeShown');
@@ -56,13 +51,15 @@ class Slider {
                             el.classList.add('beforeShown');
                         }
                         this._toggleButton();
+                        return false
                     }
+                    return true
                 }
-                if(button === this._prevButton) {
-                    if((el) !== this._listItems[0] && el.className.includes('shown')) {
+                if(button === _prevButton) {
+                    if((el) !== _listItems[0] && el.className.includes('shown')) {
                         el.classList.remove('shown');
                         el.previousElementSibling.classList.add('shown');
-                        this._switchToPrevMarker(currentMarker, index);
+                        this._switchToPrevMarker(currentMarker);
                         if(el.previousElementSibling.previousElementSibling) {
                             el.previousElementSibling.classList.remove('beforeShown');
                             el.previousElementSibling.previousElementSibling.classList.add('beforeShown');
@@ -77,17 +74,17 @@ class Slider {
             })
         })
     }
-    _switchToNextMarker(currentMarker) {
+    this._switchToNextMarker = function (currentMarker) {
         currentMarker.classList.remove('active');
         currentMarker.nextElementSibling.classList.add('active');
         this._rightScrollMarkers();
     }
-    _switchToPrevMarker (currentMarker) {
+    this._switchToPrevMarker = function (currentMarker) {
         currentMarker.classList.remove('active');
         currentMarker.previousElementSibling.classList.add('active');
         this._leftScrollMarkers();
     }
-    _addInitialScroll() {
+    this._addInitialScroll = function () {
         const halfOfMarkers = this._markers.offsetWidth / 2;
         const halfOfScroll = this._markers.scrollWidth / 2;
         if(this._markers.children.length % 2 === 0) {
@@ -96,15 +93,15 @@ class Slider {
             this._markers.scrollLeft += halfOfScroll - halfOfMarkers;
         }
     }
-    _rightScrollMarkers (){
-        const markerWidth = this._markers.offsetWidth / 5;
-        this._markers.scrollLeft +=  markerWidth;
+    this._rightScrollMarkers = function (){
+        const markerWidth = _markers.offsetWidth / 5;
+        _markers.scrollLeft +=  markerWidth;
     }
-    _leftScrollMarkers () {
-        const markerWidth = this._markers.offsetWidth / 5;
-        this._markers.scrollLeft -=  markerWidth;
+    this._leftScrollMarkers = function () {
+        const markerWidth = _markers.offsetWidth / 5;
+        _markers.scrollLeft -=  markerWidth;
     }
-    _onMarkerClick(el, marker) {
+    this._onMarkerClick = function (el, marker) {
         marker.addEventListener('click', () => {
             const shownClass = 'shown';
             const beforeShownClass = 'beforeShown';
@@ -123,17 +120,17 @@ class Slider {
             this._toggleButton();
         })
     }
-    _createMarker(el) {
+    this._createMarker = function (el) {
         const marker = document.createElement('div');
         marker.classList.add('marker');
         if(el.className.includes('shown')) {
             marker.classList.add('active');
         }
         this._onMarkerClick(el, marker);
-        this._markers.appendChild(marker);
+        _markers.appendChild(marker);
     }
-    _addMarkers() {
-        this._listItems.forEach((el, index) => this._createMarker(el, index))
+    this._addMarkers = function () {
+        _listItems.forEach((el, index) => this._createMarker(el, index))
     }
 }
 
