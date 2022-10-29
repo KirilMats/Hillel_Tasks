@@ -56,28 +56,29 @@ class Slider {
         const afterActive = active.nextElementSibling;
         const beforeActive = active.previousElementSibling;
         this._switchSlide({active: active, next: afterActive, beforeNext: beforeActive});
-        this._switchToNextMarker();
+        if(afterActive) {
+            this._switchToNextMarker();
+        }
     }
 
     _switchToPrevSlideHandler() {
         const active = document.querySelector('.shown');
         const beforeActive = active.previousElementSibling;
-        const beforeBeforeActive = beforeActive.previousElementSibling;
+        let beforeBeforeActive;
+        if(beforeActive) {
+            beforeBeforeActive = beforeActive.previousElementSibling;
+            this._switchToPrevMarker();
+        }
         this._switchSlide({active: active, next: beforeActive, beforeBeforeNext: beforeBeforeActive});
-        this._switchToPrevMarker();
     }
     _onSwitchToNextSlide() {
         this._nextButton.addEventListener('click', () => {
             this._switchToNextSlideHandler();
-            this._resetAutoSwitchSlide();
-            this._autoSwitchSlide();
         });
     }
     _onSwitchToPrevSlide() {
         this._prevButton.addEventListener('click', () => {
             this._switchToPrevSlideHandler();
-            this._resetAutoSwitchSlide();
-            this._autoSwitchSlide();
         });
     }
     _switchSlide({active, next, beforeNext, beforeBeforeNext}) {
@@ -98,6 +99,8 @@ class Slider {
             }
         }
         this._toggleButton();
+        this._resetAutoSwitchSlide();
+        this._autoSwitchSlide();
     }
     _switchToNextMarker() {
         const currentMarker = document.querySelector('.active');
