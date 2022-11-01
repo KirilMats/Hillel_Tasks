@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>Task 18 - AJAX Weather</title>
+</head>
+<body>
+<div class="container">
+    <div class="weather-widget weather widget">
+        <div class="preloader js--preloader"><img class="preloader-icon" src="./src/images/preloader.svg" alt=""></div>
+        <form class="weather__city-form js--city-form" action="#">
+            <label>
+                <input class="weather__city-input js--city-input" type="text" name="city" placeholder="Search city" id="">
+                <img class="weather__city-search-icon" src="./src/images/mag_glass.svg" alt="">
+            </label>
+        </form>
+        <div class="widget-top">
+            <div class="widget-left">
+                <div class="weather__temp js--weather__temp"></div>
+                <div class="weather__city js--weather__city"></div>
+                <div class="weather__date js--weather__date"></div>
+            </div>
+            <div class="widget-right">
+                <div class="weather__icon_wrapper"><img class="weather__icon js--weather__icon" src="" alt=""></div>
+                <div class="weather__desc js--weather__desc"></div>
+            </div>
+        </div>
+        <div class="widget-bottom">
+            <div class="weather__condition condition"><div class="condition-content"><span class="condition__caption">Feels Like</span> <span class="condition__value js--weather__feels-like"></span></div></div>
+            <div class="weather__condition condition"><div class="condition-content"><span class="condition__caption">Humidity</span> <span class="condition__value js--weather__humidity"></span></div></div>
+            <div class="weather__condition condition"><div class="condition-content"><span class="condition__caption">Pressure</span> <span class="condition__value js--weather__pressure"></span></div></div>
+            <div class="weather__condition condition"><div class="condition-content"><span class="condition__caption">Wind Speed</span> <span class="condition__value js--weather__wind-speed"></span></div></div>
+            <div class="weather__condition condition"><div class="condition-content"><span class="condition__caption">Wind Direction</span> <span class="condition__value js--weather__wind-dir"></span></div></div>
+        </div>
+    </div>
+</div>
+<script src="./node_modules/axios/dist/axios.min.js"></script>
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./js/index.js"></script>
+</body>
+</html>
