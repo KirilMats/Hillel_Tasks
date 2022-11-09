@@ -60,7 +60,6 @@ class Slider {
             this._switchToNextMarker();
         }
     }
-
     _switchToPrevSlideHandler() {
         const active = document.querySelector('.shown');
         const beforeActive = active.previousElementSibling;
