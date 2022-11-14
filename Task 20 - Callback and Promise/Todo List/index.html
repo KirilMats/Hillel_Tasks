@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title>Task 11 - Todo List</title>
+</head>
+<body>
+    <div class="container">
+        <div class="toDoList-wrapper customized-scrollbar">
+            <form class="toDoList__form toDoList-form js--toDoList__form" action="#">
+                <fieldset class="form__fieldset">
+                    <legend class="toDoList-form__legend">To Do List</legend>
+                    <input class="toDoList-form__checkbox js--toDoList-form__checkbox" type="checkbox">
+                    <label class="toDoList-form__label toDoList-form__label_add">
+                        <span class="toDoList-form__button toDoList-form__button_plus"></span>
+                        <h2 class="toDoList-form__headline toDoList-form__headline_add">Add New Task</h2>
+                    </label>
+                    <label class="toDoList-form__label toDoList-form__label_save js--toDoList-form__label_save disabled">
+                        <button class="toDoList-form__button toDoList-form__button_checkmark save"></button>
+                        <h2 class="toDoList-form__headline toDoList-form__headline_save save">Save</h2>
+                    </label>
+                    <label class="toDoList-form__label_input input">
+                        <div class="input-and-priority input">
+                            <input class="toDoList-form__input toDoList-form__input_add js--toDoList-form__input_add input" type="text" name="input" autocomplete="off" autofocus placeholder="Enter a new task">
+                            <div class="toDoList-form__priority input">
+                                <h3 class="priority__headline input">Select priority:</h3>
+                                <div class="priority__options input">
+                                    <input class="priority__input priority__input_low js--priority__input input" id="priority__input_low" type="radio" name="priority__input" checked>
+                                    <label class="priority__option priority__option_low input" for="priority__input_low">Low</label>
+                                    <input class="priority__input priority__input_medium js--priority__input input" id="priority__input_medium" type="radio" name="priority__input">
+                                    <label class="priority__option priority__option_medium input" for="priority__input_medium">Medium</label>
+                                    <input class="priority__input priority__high js--priority__input input" id="priority__input_high" type="radio" name="priority__input">
+                                    <label class="priority__option priority__option_high input" for="priority__input_high">High</label>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                </fieldset>
+            </form>
+            <div class="toDoList js--toDoList"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/toDoList.js"></script>
+</body>
+</html>
