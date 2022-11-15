@@ -25,9 +25,10 @@ class ToDo {
         }).then(res => res.json()).then(todos => {
             console.log(todos);
             todos.forEach(todo => {
-                this._addToDo(todo.text);
+                this._addToDo(todo);
                 if(todo.checked) {
-                    // this._completeToDo();
+                    document.querySelector('.js--toDoItem-form__checkbox').checked = 'checked';
+                    this._completeToDo();
                 }
             })
         });
@@ -41,10 +42,10 @@ class ToDo {
         })
     }
 
-    _addToDo(todoText) {
-        const value = this._input.value || todoText;
+    _addToDo(todo) {
+        const value = this._input.value || todo.text;
         if (value) {
-            const selectedPriority = this._getSelectedPriority();
+            const selectedPriority = todo ? todo.priority : this._getSelectedPriority();
             const toDo = this._createTodo(value, selectedPriority);
             this._list.insertAdjacentHTML('afterbegin', toDo);
             this._onCompleteCheckboxChange();
@@ -81,11 +82,10 @@ class ToDo {
     }
 
     _completeToDo(checkbox) {
-        const toDoCheckbox = checkbox;
-        const toDoText = checkbox.nextElementSibling.firstElementChild;
-        const toDoItem = checkbox.closest('.toDoItem');
+        const toDoCheckbox = checkbox || document.querySelector('.js--toDoItem-form__checkbox');
+        const toDoText = toDoCheckbox.nextElementSibling.firstElementChild;
+        const toDoItem = toDoCheckbox.closest('.toDoItem');
         toDoText.classList.toggle('completed');
-
         toDoCheckbox.checked
             ? this._list.appendChild(toDoItem)
             : this._list.insertBefore(toDoItem, this._list.firstElementChild);

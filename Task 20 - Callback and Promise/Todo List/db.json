@@ -3,13 +3,19 @@
     {
       "id": 1,
       "text": "Test text",
-      "checked": true,
+      "checked": false,
       "priority": "high"
     },
     {
       "id": 2,
       "text": "Test text2",
-      "checked": false,
+      "checked": true,
+      "priority": "medium"
+    },
+    {
+      "id": 3,
+      "text": "Test text3",
+      "checked": true,
       "priority": "low"
     }
   ]
