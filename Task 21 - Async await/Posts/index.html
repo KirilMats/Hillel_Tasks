@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/css/main.css">
+    <title>Task 21 - Async await</title>
+</head>
+<body>
+    <div class="container">
+        <form class="js--post__form post__form" action="#">
+            <label class="post__label">
+                <input class="post__input js--post__input" type="number" min="1" max="100" name="post__input" placeholder="Enter post id (from 1 to 100)">
+                <svg class="post__search-icon mag_glass" width="24" height="24" viewBox="0 0 24 24" fill="#71767b" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21.3187 20.0273L15.232 13.9406C16.1766 12.7195 16.6875 11.2266 16.6875 9.65625C16.6875 7.77656 15.9539 6.01406 14.6273 4.68516C13.3008 3.35625 11.5336 2.625 9.65625 2.625C7.77891 2.625 6.01172 3.35859 4.68516 4.68516C3.35625 6.01172 2.625 7.77656 2.625 9.65625C2.625 11.5336 3.35859 13.3008 4.68516 14.6273C6.01172 15.9562 7.77656 16.6875 9.65625 16.6875C11.2266 16.6875 12.7172 16.1766 13.9383 15.2344L20.025 21.3187C20.0428 21.3366 20.064 21.3508 20.0874 21.3604C20.1107 21.3701 20.1357 21.3751 20.1609 21.3751C20.1862 21.3751 20.2112 21.3701 20.2345 21.3604C20.2578 21.3508 20.279 21.3366 20.2969 21.3187L21.3187 20.2992C21.3366 20.2814 21.3508 20.2602 21.3604 20.2369C21.3701 20.2135 21.3751 20.1885 21.3751 20.1633C21.3751 20.138 21.3701 20.113 21.3604 20.0897C21.3508 20.0664 21.3366 20.0452 21.3187 20.0273ZM13.3688 13.3688C12.375 14.3602 11.0578 14.9062 9.65625 14.9062C8.25469 14.9062 6.9375 14.3602 5.94375 13.3688C4.95234 12.375 4.40625 11.0578 4.40625 9.65625C4.40625 8.25469 4.95234 6.93516 5.94375 5.94375C6.9375 4.95234 8.25469 4.40625 9.65625 4.40625C11.0578 4.40625 12.3773 4.95 13.3688 5.94375C14.3602 6.9375 14.9062 8.25469 14.9062 9.65625C14.9062 11.0578 14.3602 12.3773 13.3688 13.3688Z"/>
+                </svg>
+            </label>
+        </form>
+        <div class="posts-wrapper">
+            <div class="js--post_content post__content">
+                <div class="post-wrapper">
+                    <div class="user-info">
+                        <a class="user-link" href="#">
+                            <img class="user-photo" src="https://via.placeholder.com/100/1d9bf0/1d9bf0?Text=Down.com" alt="">
+                            <div class="user-names">
+                                <p class="user-name">thenonhacker</p>
+                                <p class="user-at-name">@thenonhacker</p>
+                            </div>
+                        </a>
+                        <div class="user-options">&bull;&bull;&bull;</div>
+                    </div>
+                    <p class="js--post__body post__body">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick.</p>
+                    <div class="post-time"><a class="time__link" href="#">7:03 PM &bull; Nov 6, 2021</a> &bull; <a class="twa__link" href="#">Twitter Web App</a></div>
+                    <div class="divider"></div>
+                </div>
+                <div class="js--post__comments post__comments">
+                    <div class="comments__panel">
+                        <a class="comments-link" href="#comments">
+                            <div class="js--comments-count comments-count"></div>
+                            <div class="comments-icon-wrapper">
+                                <svg class="comments-icon" viewBox="0 0 24 24" aria-hidden="true"><g><path d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z"></path></g></svg>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="js--comments comments" id="comments">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="src/js/index.js"></script>
+</body>
+</html>
