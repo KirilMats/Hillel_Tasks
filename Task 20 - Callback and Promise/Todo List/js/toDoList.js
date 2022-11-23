@@ -1,4 +1,5 @@
 'use strict';
+const API_URL = "http://localhost:3000/todos";
 class ToDo {
     constructor({_input, _list, _form, _savePanel, _addPanel, _panelsCheckbox, _priorityOptions}) {
         this._input = _input;
@@ -19,42 +20,84 @@ class ToDo {
         this._loadFromServer();
     }
 
-    _loadFromServer() {
-        fetch("http://localhost:3000/todos", {
+    _loadFromServer(id) {
+        fetch(id ? API_URL + `/${id}` : API_URL, {
             method: "GET"
-        }).then(res => res.json()).then(todos => {
-            console.log(todos);
-            todos.forEach(todo => {
-                this._addToDo(todo);
-                if(todo.checked) {
-                    document.querySelector('.js--toDoItem-form__checkbox').checked = 'checked';
-                    this._completeToDo();
-                }
-            })
+        }).then(res => res.json()).then( todos => {
+            if(id) {
+                this._addToDo(todos);
+            } else {
+                todos.forEach(todo => {
+                    this._addToDo(todo);
+                })
+            }
         });
+    }
 
+    _loadToServer(todo) {
+        fetch(API_URL, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(todo)
+        }).then(res => res.json())
+            .then(data => {
+                this._loadFromServer(data.id);
+            })
+    }
+
+    _updateToServer(todo) {
+        fetch(API_URL + `/${todo.id}`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "PUT",
+            body: JSON.stringify(todo)
+        })
+    }
+
+    _deleteFromServer(id) {
+        fetch(API_URL + '/' + id, {
+            method: "DELETE"
+        })
+    }
+
+    _getJSONTodo() {
+        return {
+            text: this._input.value,
+            checked: false,
+            priority: this._getSelectedPriority()
+        }
     }
 
     _onSubmit() {
         this._form.addEventListener('submit', (event) => {
             event.preventDefault();
-            this._addToDo();
+            const todo = this._getJSONTodo();
+            const value = this._input.value;
+            if (value) {
+                this._loadToServer(todo);
+            }
+            this._input.value = '';
         })
     }
 
     _addToDo(todo) {
-        const value = this._input.value || todo.text;
-        if (value) {
-            const selectedPriority = todo ? todo.priority : this._getSelectedPriority();
-            const toDo = this._createTodo(value, selectedPriority);
-            this._list.insertAdjacentHTML('afterbegin', toDo);
-            this._onCompleteCheckboxChange();
-            this._onDeleteButtonClick();
-            this._resetPriority();
-            this._disableSavePanel();
-            this._panelsCheckbox.checked = '';
+        const selectedPriority = todo ? todo.priority : this._getSelectedPriority();
+        const toDo = this._createTodo(todo ? todo.text : this._input.value, selectedPriority);
+        this._list.insertAdjacentHTML('afterbegin', toDo);
+        this._onCompleteCheckboxChange(todo ? todo.id : '');
+        if (todo.checked) {
+            document.querySelector('.js--toDoItem-form__checkbox').checked = 'checked';
+            this._completeToDo();
         }
-        this._input.value = '';
+        this._onDeleteButtonClick(todo ? todo.id : '');
+        this._resetPriority();
+        this._disableSavePanel();
+        this._panelsCheckbox.checked = '';
     }
 
     _createTodo(toDoText, selectedPriority) {
@@ -77,11 +120,11 @@ class ToDo {
         `)
     }
 
-    _onCompleteCheckboxChange() {
-        document.querySelector('.js--toDoItem-form__checkbox').addEventListener('change', (e) => {this._completeToDo(e.target)});
+    _onCompleteCheckboxChange(id) {
+        document.querySelector('.js--toDoItem-form__checkbox').addEventListener('change', (e) => this._completeToDo(e.target, id));
     }
 
-    _completeToDo(checkbox) {
+    _completeToDo(checkbox, id) {
         const toDoCheckbox = checkbox || document.querySelector('.js--toDoItem-form__checkbox');
         const toDoText = toDoCheckbox.nextElementSibling.firstElementChild;
         const toDoItem = toDoCheckbox.closest('.toDoItem');
@@ -89,15 +132,25 @@ class ToDo {
         toDoCheckbox.checked
             ? this._list.appendChild(toDoItem)
             : this._list.insertBefore(toDoItem, this._list.firstElementChild);
+        if(id) {
+            const todo = {
+                text: toDoText.textContent,
+                checked: toDoCheckbox.checked ? true : false,
+                priority: toDoText.nextElementSibling.textContent,
+                id: id
+            }
+            this._updateToServer(todo);
+        }
     }
 
-    _onDeleteButtonClick = () => {
-        document.querySelector('.controls__delete').addEventListener('click', this._deleteToDo);
+    _onDeleteButtonClick = (id) => {
+        document.querySelector('.controls__delete').addEventListener('click', (e) => {this._deleteToDo(e, id)});
     }
 
-    _deleteToDo = function () {
-        const toDo  = this.closest('.toDoList__toDoItem');
+    _deleteToDo = function (e, id) {
+        const toDo  = e.target.closest('.toDoList__toDoItem');
         toDo.remove();
+        this._deleteFromServer(id);
     }
 
     _disableSavePanel = function () {
