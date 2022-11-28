@@ -1,0 +1,24 @@
+<svg width="130" height="130" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M97.5 82.455V82.4555H21.6667V82.3043C9.4793 80.9371 0 70.4514 0 57.7188C0 44.0573 10.9131 32.9824 24.375 32.9824C25.2906 32.9824 26.1943 33.0337 27.0837 33.1334C27.0834 33.0829 27.0833 33.0324 27.0833 32.9819C27.0833 14.7665 41.6341 0 59.5833 0C72.1342 0 83.0233 7.21988 88.4381 17.7903C91.3144 16.9445 94.355 16.4912 97.5 16.4912C115.449 16.4912 130 31.2577 130 49.4731C130 67.6885 115.449 82.455 97.5 82.455Z" fill="url(#paint0_linear_355_772)"/>
+<path d="M30.3333 60.6665V77.9998M30.3333 95.3332V77.9998M30.3333 77.9998H47.6667M30.3333 77.9998H13M30.3333 77.9998L17.3333 64.9998M30.3333 77.9998L43.3333 90.9998M30.3333 77.9998L17.3333 90.9998M30.3333 77.9998L43.3333 64.9998" stroke="url(#paint1_linear_355_772)" stroke-width="4.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M90.9998 43.3335V60.6668M90.9998 78.0002V60.6668M90.9998 60.6668H108.333M90.9998 60.6668H73.6665M90.9998 60.6668L77.9998 47.6668M90.9998 60.6668L104 73.6668M90.9998 60.6668L77.9998 73.6668M90.9998 60.6668L104 47.6668" stroke="url(#paint2_linear_355_772)" stroke-width="4.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M104 91V108.333M104 125.667V108.333M104 108.333H121.333M104 108.333H86.6665M104 108.333L90.9998 95.3333M104 108.333L117 121.333M104 108.333L90.9998 121.333M104 108.333L117 95.3333" stroke="url(#paint3_linear_355_772)" stroke-width="4.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<defs>
+<linearGradient id="paint0_linear_355_772" x1="32.7257" y1="50.5727" x2="70.8324" y2="97.5097" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="#BDE0F5"/>
+</linearGradient>
+<linearGradient id="paint1_linear_355_772" x1="30.3333" y1="60.6665" x2="30.3333" y2="95.3332" gradientUnits="userSpaceOnUse">
+<stop stop-color="#94CCFD"/>
+<stop offset="1" stop-color="#4EA8F4"/>
+</linearGradient>
+<linearGradient id="paint2_linear_355_772" x1="90.9998" y1="43.3335" x2="90.9998" y2="78.0002" gradientUnits="userSpaceOnUse">
+<stop stop-color="#94CCFD"/>
+<stop offset="1" stop-color="#4EA8F4"/>
+</linearGradient>
+<linearGradient id="paint3_linear_355_772" x1="104" y1="91" x2="104" y2="125.667" gradientUnits="userSpaceOnUse">
+<stop stop-color="#94CCFD"/>
+<stop offset="1" stop-color="#4EA8F4"/>
+</linearGradient>
+</defs>
+</svg>
