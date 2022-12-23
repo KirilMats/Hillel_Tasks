@@ -1,0 +1,8 @@
+.businessCard {
+    width: 550px;
+    height: 320px;
+    background: rgba(255, 255, 255, 0.24);
+    backdrop-filter: blur(23.5px);
+    border-radius: 30px;
+    position: relative;
+}
