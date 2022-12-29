@@ -1,0 +1,20 @@
+.addSkill {
+    width: 100%;
+    display: flex;
+}
+.form {
+    width: 100%;
+    display: flex;
+}
+.add_input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #E8BACF;
+    color: #000;
+}
+.add_input::placeholder {
+    color: #8B707C;
+}
