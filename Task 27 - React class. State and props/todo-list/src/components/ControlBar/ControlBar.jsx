@@ -4,7 +4,6 @@ import {Component, createRef} from "react";
 class ControlBar extends Component{
     constructor(props) {
         super(props);
-        this.panelsCheckbox = createRef();
         this.addInput = createRef();
         this.state = {
             savePanel: {
@@ -91,7 +90,7 @@ class ControlBar extends Component{
     render() {
         return (
             <>
-                <input ref={this.panelsCheckbox} className={`${c.checkbox}`} type="checkbox" onChange={() => {}} checked={this.state.panelsCheckbox.isChecked} />
+                <input className={`${c.checkbox}`} type="checkbox" onChange={() => {}} checked={this.state.panelsCheckbox.isChecked} />
                 <label onClick={this.toggleAddNewTask} className={`${c.label} ${c.label_add}`}>
                     <span className={`${c.button} ${c.button_plus}`}></span>
                     <h2 className={`${c.headline}`}>Add New Task</h2>
