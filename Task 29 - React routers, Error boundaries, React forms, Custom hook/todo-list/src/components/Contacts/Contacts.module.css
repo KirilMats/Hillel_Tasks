@@ -1,0 +1,18 @@
+.contacts {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+.contact_list {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+.contact_list_item {
+    color: #fff;
+    font-size: 18px;
+    margin: 5px 0;
+}
