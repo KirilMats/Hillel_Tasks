@@ -1,21 +1,21 @@
-import c from './TodoList.module.css';
-import ControlBar from "../ControlBar/ControlBar";
+import c from './TodoListApp.module.css';
 import ToDoList from "../ToDoList/ToDoList";
 import {useEffect, useState} from "react";
+import {useRef} from "react";
 
 const App = (props) => {
     const [todos, setTodos] = useState([
         {
-            id: 0,
+            id: crypto.randomUUID(),
             text: '123',
             isChecked: true,
             priority: 'low'
         },
         {
-            id: 1,
+            id: crypto.randomUUID(),
             text: '243',
             isChecked: false,
-            priority: 'low'
+            priority: 'medium'
         }
     ]);
     const [newTodo, setNewTodo] = useState({
@@ -23,26 +23,17 @@ const App = (props) => {
         isChecked: false,
         priority: 'low'
     });
-    const [panelsCheckbox, setPanelsCheckbox] = useState({toggle: null});
-    const [savePanel, setSavePanel] = useState({isDisabled: false});
 
-    const getPanelsCheckbox = (toggle) => {
-        setPanelsCheckbox({toggle: toggle});
-    }
-    const getSavePanel = (savePanel) => {
-        setSavePanel({isDisabled: savePanel.isDisabled});
-        console.log(savePanel);
-    }
+    const addInputRef = useRef();
+    const [savePanel, setSavePanel] = useState({isDisabled: true});
+    const [error, setError] = useState({error: ''})
+    const [addInput, setAddInput] = useState({isFocused: false});
+    const [panelsCheckbox, setPanelsCheckbox] = useState({isChecked: false});
+
     const hideInput = (event) => {
-        if (!event.target.className.includes('ControlBar') && !event.target.className.includes('Todo_')) {
-            panelsCheckbox.toggle(false);
+        if (!event.target.className.includes('js--controlPanel') && !event.target.className.includes('Todo_')) {
+            setPanelsCheckbox({isChecked: false});
         }
-    }
-    const getTodoText = (text) => {
-        setNewTodo({...newTodo, text: text});
-    }
-    const getTodoPriority = (priority) => {
-        setNewTodo({...newTodo, priority: priority});
     }
     const resetNewTodo = () => {
         setNewTodo({
@@ -59,21 +50,84 @@ const App = (props) => {
     }
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(savePanel.isDisabled);
         if(newTodo.text && !savePanel.isDisabled) {
-            setTodos([...todos, {id: todos.length === 0 ? 0 : todos[todos.length - 1].id + 1, ...newTodo}]);
+            setTodos([...todos, {id: crypto.randomUUID(), ...newTodo}]);
             resetNewTodo();
-            panelsCheckbox.toggle(false);
+            setPanelsCheckbox({isChecked: false});
+        } else {
+            keepSavePanelDisabled('');
         }
     }
     const getTodoCheck = (isChecked, id) => {
-        const updatedTodos = todos.map((todo, i) => {
-            if(i === id) {
+        const updatedTodos = todos.map((todo) => {
+            if(todo.id === id) {
                 return{...todo, isChecked: isChecked}
             }
             return todo;
         })
         setTodos( [...updatedTodos]);
+    }
+    const handleAddInputChange = (event) => {
+        const currentInputValue = event.target.value;
+        setNewTodo({...newTodo, text: currentInputValue});
+        keepSavePanelDisabled(currentInputValue);
+    }
+    //Keeping Save Panel disabled until the value is not empty
+    const keepSavePanelDisabled = (text) => {
+        if (!text) {
+            setSavePanel({isDisabled: true})
+            setError({error: 'No text detected'})
+        } else {
+            setSavePanel({isDisabled: false})
+            validateAddInput(text);
+        }
+    }
+    const validateAddInput = (text) => {
+        if (text.length < 5) {
+            setSavePanel({isDisabled: true})
+            setError({error: 'Task text should have more then 5 chars'})
+        } else {
+            setSavePanel({isDisabled: false})
+            setError({error: ''})
+        }
+    }
+    const handleInputFocus = (isFocused) => {
+        setAddInput({
+            isFocused: isFocused
+        });
+    }
+    useEffect(() => {
+        if(addInput.isFocused) {
+            addInputRef.current.focus();
+        } else {
+            addInputRef.current.blur();
+        }
+    })
+    const handlePanelsCheckbox = () => {
+        setPanelsCheckbox({
+            isChecked: !panelsCheckbox.isChecked
+        });
+    }
+    const toggleAddNewTask = () => {
+        handlePanelsCheckbox();
+        handleInputFocus(true);
+    }
+    const handlePriorityOptionChange = (type) => {
+        switch (type) {
+            case 'low':
+                setNewTodo({...newTodo, priority: 'low'});
+                break;
+            case 'medium':
+                setNewTodo({...newTodo, priority: 'medium'});
+                break;
+            case 'high':
+                setNewTodo({...newTodo, priority: 'high'});
+                break;
+            default:
+                setNewTodo({...newTodo, priority: 'low'});
+                break;
+        }
+        handleInputFocus(true);
     }
     return (
         <div className={c.App} onClick={hideInput}>
@@ -81,7 +135,38 @@ const App = (props) => {
                 <form className={`${c.form} js--toDoList__form`} action="#" onSubmit={submitHandler}>
                     <fieldset className={c.fieldset}>
                         <legend className={c.legend}>To Do List</legend>
-                        <ControlBar getPanelsCheckbox={getPanelsCheckbox} getSavePanel={getSavePanel} getTodoText={getTodoText} getTodoPriority={getTodoPriority} text={newTodo.text} selectedPriority={newTodo.priority} />
+                        <input className={`${c.checkbox} js--controlPanel`} type="checkbox" onChange={handlePanelsCheckbox} checked={panelsCheckbox.isChecked} />
+                        <label onClick={toggleAddNewTask} className={`${c.label} ${c.label_add} js--controlPanel`}>
+                            <span className={`${c.button} ${c.button_plus} js--controlPanel`}></span>
+                            <h2 className={`${c.headline} js--controlPanel`}>Add New Task</h2>
+                        </label>
+                        <label className={`${c.label} ${c.label_save} js--controlPanel ${savePanel.isDisabled ? c.disabled : ''}`}>
+                            <button className={`${c.button} ${c.button_checkmark} js--controlPanel save`}></button>
+                            <h2 className={`${c.headline} js--controlPanel save`}>Save</h2>
+                        </label>
+                        <label className={`${c.label_input} js--controlPanel input`}>
+                            <div className="ControlBar_add_task js--controlPanel">
+                                <input ref={addInputRef} onChange={handleAddInputChange} value={newTodo.text} className={`${c.input_add} input} js--controlPanel`}
+                                       type="text" name="input" autoComplete="off" autoFocus placeholder="Enter a new task" />
+                                <div className={`${c.priority} js--controlPanel input`}>
+                                    <h3 className={`${c.priority_headline} js--controlPanel input`}>Select priority:</h3>
+                                    <div className={`${c.priority_options} js--controlPanel input`}>
+                                        <input onChange={ () => {handlePriorityOptionChange('low')}} className={`${c.priority_input} js--controlPanel`}
+                                               id="priority_low" type="radio" name="priority_input" checked={newTodo.priority === 'low' ? true : ''} />
+                                        <label className={`${c.priority_option} js--controlPanel input`}
+                                               htmlFor="priority_low">Low</label>
+                                        <input onChange={ () => {handlePriorityOptionChange('medium')}} className={`${c.priority_input} js--controlPanel`}
+                                               id="priority_medium" type="radio" name="priority_input" checked={newTodo.priority === 'medium' ? true : ''} />
+                                        <label className={`${c.priority_option} ${c.priority_option_medium} js--controlPanel input`}
+                                               htmlFor="priority_medium">Medium</label>
+                                        <input onChange={ () => {handlePriorityOptionChange('high')}} className={`${c.priority_input} js--controlPanel`}
+                                               id="priority_high" type="radio" name="priority_input" checked={newTodo.priority === 'high' ? true : ''} />
+                                        <label className={`${c.priority_option} js--controlPanel input`} htmlFor="priority_high">High</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                        {error ? <span style={{'color': 'red', 'fontSize': '12px', 'margin': '10px 0 0 10px'}}>{error.error}</span> : ''}
                     </fieldset>
                 </form>
                 <ToDoList todos={todos} getTodoCheck={getTodoCheck} deleteTodo={deleteTodo} />
