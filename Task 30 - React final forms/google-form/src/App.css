@@ -1,0 +1,25 @@
+@font-face {
+  font-family: Product Sans;
+  src: url('../src/fonts/product-sans/ProductSans-Regular.ttf');
+  font-weight: normal;
+}
+@font-face {
+  font-family: Product Sans;
+  src: url('../src/fonts/product-sans/ProductSans-Medium.ttf');
+  font-weight: 600;
+}
+@font-face {
+  font-family: Product Sans;
+  src: url('../src/fonts/product-sans/ProductSans-Bold.ttf');
+  font-weight: bold;
+}
+.App {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80vh;
+  font-family: Product Sans, sans-serif;
+}
+

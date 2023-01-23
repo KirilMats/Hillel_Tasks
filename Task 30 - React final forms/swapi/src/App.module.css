@@ -1,0 +1,10 @@
+.card {
+    position: relative;
+}
+.load {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(50% - 18px);
+    text-align: center;
+}
