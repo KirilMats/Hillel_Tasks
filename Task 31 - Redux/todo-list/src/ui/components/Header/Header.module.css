@@ -1,0 +1,24 @@
+.header {
+    padding: 20px 0;
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content:  flex-end;
+    border-bottom: 1px dotted #fff;
+    margin-bottom: 25px;
+}
+.header a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin: 0 20px;
+}
+.header a.active {
+    text-decoration: underline;
+    font-weight: 600;
+    color: #000;
+}
+.header a:hover {
+    color: #000;
+}

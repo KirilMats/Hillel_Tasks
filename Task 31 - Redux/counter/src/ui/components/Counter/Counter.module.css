@@ -1,0 +1,28 @@
+.counter {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #9EA8BD;
+    border-radius: 10px;
+    padding: 20px;
+}
+.counterControls {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 20px;
+}
+.increaseCounter, .decreaseCounter {
+    margin: 0 5px;
+    width: 40px;
+    height: 30px;
+    cursor: pointer;
+    background-color: #3936DB;
+    color: #fff;
+    border: none;
+    outline: none;
+}
+
+.increaseCounter:hover, .decreaseCounter:hover {
+    background-color: #0f95ff;
+}
