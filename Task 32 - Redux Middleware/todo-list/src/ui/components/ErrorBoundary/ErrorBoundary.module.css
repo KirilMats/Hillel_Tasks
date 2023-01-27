@@ -1,0 +1,18 @@
+.errorBoundary {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+.errorMessage {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.homeLink {
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+}

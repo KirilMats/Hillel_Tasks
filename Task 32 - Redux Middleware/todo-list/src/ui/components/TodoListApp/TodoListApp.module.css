@@ -1,0 +1,228 @@
+.App {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+.toDoList_wrapper {
+    height: 90vh;
+    width: 420px;
+    background: #ffffff;
+    border-radius: 24px;
+    box-sizing: border-box;
+    padding: 48px 24px 30px;
+    overflow: auto;
+    position: relative;
+}
+.form {
+    width: 100%;
+}
+.fieldset {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+}
+.legend {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+    margin-bottom: 48px;
+}
+.label {
+    cursor: pointer;
+    display: flex;
+    flex-flow: row nowrap;
+    width: fit-content;
+}
+.button {
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #E53170;
+    position: relative;
+    top: 0;
+    cursor: pointer;
+}
+.button_plus::before, .button_plus::after {
+    content: '';
+    width: 14px;
+    height: 1.5px;
+    background: #ffffff;
+    border-radius: 3px;
+    position: absolute;
+    left: 8px;
+    top: 14px;
+}
+.button_plus::after {
+    transform: rotate(90deg);
+}
+.headline {
+    display: inline-block;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    color: #E53170;
+    margin-left: 12px;
+}
+.label_save.disabled {
+    opacity: 0.4;
+    cursor: auto;
+}
+.label_save.disabled .button {
+    cursor: auto;
+}
+.button_checkmark::before, .button_checkmark::after{
+    content: '';
+    height: 2px;
+    background: #ffffff;
+    border-radius: 3px;
+    position: absolute;
+}
+.button_checkmark::before {
+    width: 7px;
+    left: 8px;
+    top: 16px;
+    transform: rotate(45deg);
+}
+.button_checkmark::after {
+    width: 12px;
+    left: 11px;
+    top: 14px;
+    transform: rotate(-45deg);
+}
+.checkbox, .label_save {
+    display: none;
+}
+
+.checkbox:checked ~ .label_input {
+    border: 1px solid #E53170;
+    height: 85px;
+    padding: 16px;
+    transition: height;
+    transition: padding;
+    transition: all 0.2s ease-in-out;
+}
+
+.checkbox:checked ~ .label_add .headline {
+    display: none;
+}
+
+.checkbox:checked ~ .label_add .button_plus {
+    display: none;
+}
+
+.checkbox:checked ~ .label_save {
+    display: flex;
+}
+.label_input {
+    width: 375px;
+    height: 0;
+    overflow: hidden;
+    left: 24px;
+    top: 205px;
+    padding: 0;
+    margin-top: 24px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border-radius: 12px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 0px 10px rgba(229, 49, 112, 0.1);
+    transition: height;
+    transition: padding;
+    transition: all 0.2s ease-in-out;
+}
+.input_add {
+    width: 100%;
+    border: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+    color: #0F0E17;
+    padding: 0;
+    caret-color: #E53170;
+}
+.input_add::placeholder {
+    color: #979797;
+    font-style: normal;
+    font-weight: 600;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+}
+.input_add:focus {
+    outline: none;
+    outline: unset;
+}
+.priority {
+    margin: 8px 0 0;
+    display: flex;
+    flex-flow: row nowrap;
+}
+.priority_headline {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #0F0E17;
+    margin: 0 8px 0 0;
+}
+.priority_options {
+    display: flex;
+    flex-flow: row nowrap;
+}
+.priority_options .priority_input {
+    display: none;
+}
+
+.priority_options .priority_input:checked + .priority_option {
+    color: #E53170;
+}
+
+.priority_options .priority_input:checked + .priority_option::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -1px;
+    background: #E53170;
+    border-radius: 10px 10px 0px 0px;
+}
+.priority_option {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: #DD8BA8;
+    position: relative;
+    cursor: pointer;
+}
+.priority_option_medium {
+    margin: 0 12px;
+}
+.deleteAllTodos_btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin:0 24px 28px 0;
+    background: #E53170;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 14px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.deleteAllTodos_btn:disabled {
+    opacity: 0.5;
+    cursor: auto;
+}
+
